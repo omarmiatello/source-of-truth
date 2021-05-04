@@ -18,4 +18,5 @@ pluginManagement {
 }
 
 rootProject.name = "source-of-truth"
-
+include(":app-sample")
+include(":core")
