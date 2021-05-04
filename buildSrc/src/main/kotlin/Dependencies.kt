@@ -1,4 +1,5 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.project
 
 fun String.isStableVersion(): Boolean {
     val upperCase = toUpperCase(java.util.Locale.ROOT)
@@ -73,5 +74,4 @@ object Lib {
 }
 
 // Project modules
-//val DependencyHandler.moduleAppSample get() = project(":app-sample")
-//val DependencyHandler.moduleCore get() = project(":core")
+val DependencyHandler.moduleCore get() = project(":core")

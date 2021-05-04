@@ -9,7 +9,7 @@ repositories {
 }
 
 object VersionIn {
-    const val androidGradlePlugin = "7.0.0-alpha14"
+    const val androidGradlePlugin = "7.0.0-alpha15"
     const val kotlin = "1.4.32"
     const val dokka = "1.4.20"
 }
