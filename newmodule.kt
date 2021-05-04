@@ -55,15 +55,8 @@ fun main(args: Array<String>) {
             dependenciesPrefix = "module",
         ),
         modules = listOf(
-            Group(
-                gradleName = "feature-name",
-                modules = listOf(
-                    App(gradleName = "app"),
-                    LibAndroid(gradleName = "ui"),
-                    LibKotlin(gradleName = "core"),
-                ),
-            ),
-            LibAndroid(gradleName = "my-lib"),
+            LibAndroid(gradleName = "app-sample"),
+            LibKotlin(gradleName = "core"),
         ),
         logLevel = 1,
         hasPrompt = false,
