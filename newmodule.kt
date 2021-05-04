@@ -55,8 +55,7 @@ fun main(args: Array<String>) {
             dependenciesPrefix = "module",
         ),
         modules = listOf(
-            LibAndroid(gradleName = "app-sample"),
-            LibKotlin(gradleName = "core"),
+            App(gradleName = "app-sample"),
         ),
         logLevel = 1,
         hasPrompt = false,

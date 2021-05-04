@@ -1,4 +1,5 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
+
 fun String.isStableVersion(): Boolean {
     val upperCase = toUpperCase(java.util.Locale.ROOT)
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { it in upperCase }
@@ -6,6 +7,8 @@ fun String.isStableVersion(): Boolean {
 }
 
 fun String.isNotStableVersion() = !isStableVersion()
+
+val String.version get() = substringAfterLast(":")
 
 object Sdk {
     const val min = 21
@@ -69,24 +72,6 @@ object Lib {
     const val testJunit = "junit:junit:4.13.2"
 }
 
-val String.version get() = substringAfterLast(":")
-
-object LibGroup {
-    private val composeBasic = listOf(
-        Lib.composeUi, Lib.composeFoundation, Lib.composeMaterial, Lib.composeActivity
-    )
-    private val composeIconsViewModelCoil = listOf(
-        Lib.composeIconsCore, Lib.composeIconsExt, Lib.composeViewmodel,
-        Lib.composeAccompanistCoil
-    )
-    val composeAll = composeBasic + composeIconsViewModelCoil
-    val composeDebug = listOf(Lib.composeUiTooling, Lib.kotlinReflect)
-
-    val testAndroid = listOf(
-        Lib.testAndroidxRules, Lib.testAndroidxExtJunit, Lib.testAndroidxEspresso
-    )
-}
-
-val DependencyHandler.moduleAppSample get() = project(":app-sample")
-val DependencyHandler.moduleCore get() = project(":core")
 // Project modules
+//val DependencyHandler.moduleAppSample get() = project(":app-sample")
+//val DependencyHandler.moduleCore get() = project(":core")
