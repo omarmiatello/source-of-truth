@@ -1,5 +1,5 @@
 version = "1.0.0"
-description = "This is core"
+description = "Handle multiple sources (local / remote) and build a \"single source of truth\""
 
 plugins {
     id("java-library")
