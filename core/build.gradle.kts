@@ -8,7 +8,17 @@ plugins {
     publish
 }
 
+kotlin {
+    explicitApi()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = Version.java
+}
+
 dependencies {
+    implementation(Lib.coroutinesCore)
+
     testImplementation(Lib.testJunit)
 }
 

@@ -65,19 +65,9 @@ android {
 dependencies {
     implementation(Lib.androidxActivityKtx)
     implementation(Lib.androidxAppcompat)
-    implementation(Lib.androidxCameraCamera2)
-    implementation(Lib.androidxCameraCore)
-    implementation(Lib.androidxCameraExtensions)
-    implementation(Lib.androidxCameraLifecycle)
-    implementation(Lib.androidxCameraView)
-    implementation(Lib.androidxConstraintlayout)
     implementation(Lib.androidxCoreKtx)
     implementation(Lib.androidxFragmentKtx)
     implementation(Lib.androidxLifecycleRuntimeKtx)
-    implementation(Lib.androidxLivedataKtx)
-    implementation(Lib.androidxNavigationFragmentKtx)
-    implementation(Lib.androidxNavigationUiKtx)
-    implementation(Lib.androidxRecyclerview)
     implementation(Lib.androidxViewmodelKtx)
 
     implementation(Lib.composeAccompanistCoil)
@@ -92,25 +82,10 @@ dependencies {
 
     implementation(Lib.coroutinesAndroid)
     implementation(Lib.coroutinesCore)
-    implementation(Lib.coroutinesPlayServices)
-
-    implementation(Lib.dagger)
-
-    implementation(Lib.firebaseDatabaseKtx)
-    implementation(Lib.firebaseStorageKtx)
-
-    implementation(Lib.googleMaterial)
-
-    implementation(Lib.hiltAndroid)
-    implementation(Lib.hiltCommon)
-    implementation(Lib.hiltViewModel)
 
     implementation(Lib.kotlinReflect)
 
-    implementation(Lib.ktorClientOkhttp)
-
-    implementation(Lib.mlkitBarcodeScanning)
-    implementation(Lib.mlkitTextRecognition)
+    implementation(moduleCore)
 
     // kapt(Lib.kaptDaggerCompiler)
     // kapt(Lib.kaptHiltAndroidCompiler)
