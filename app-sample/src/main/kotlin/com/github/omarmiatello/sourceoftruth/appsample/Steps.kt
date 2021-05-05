@@ -1,3 +1,5 @@
+package com.github.omarmiatello.sourceoftruth.appsample
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
@@ -11,19 +13,24 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class Steps(
     private vararg val steps: Pair<() -> Unit, String>,
+    private val scope: CoroutineScope,
 ) {
     private val currentStep = MutableStateFlow(1)
     val stepStrings = currentStep.map { steps.take(it).map { it.second } }
-        .stateIn(GlobalScope, SharingStarted.WhileSubscribed(), emptyList())
+        .stateIn(scope, SharingStarted.WhileSubscribed(), emptyList())
 
     init {
-        GlobalScope.launch {
+        scope.launch {
             currentStep.collect { n -> steps.take(n).forEach { it.first() } }
         }
     }
@@ -45,7 +52,9 @@ class Steps(
             }
             Text(
                 "${currentStep.collectAsState().value}",
-                Modifier.padding(horizontal = 16.dp).align(Alignment.CenterVertically)
+                Modifier
+                    .padding(horizontal = 16.dp)
+                    .align(Alignment.CenterVertically)
             )
             Button(onClick = { next() }) {
                 Text("Next")

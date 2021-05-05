@@ -1,7 +1,7 @@
 package com.github.omarmiatello.sourceoftruth.appsample
 
-import Steps
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.omarmiatello.sourceoftruth.core.SourceOfTruth
 import com.github.omarmiatello.sourceoftruth.core.removeBy
 import com.github.omarmiatello.sourceoftruth.core.updateBy
@@ -26,6 +26,7 @@ class MainViewModel : ViewModel() {
             }
         },
         onDelete = { key -> extData.removeBy { key == it.id } },
+        scope = viewModelScope,
     )
 
     val steps = Steps(
@@ -33,12 +34,13 @@ class MainViewModel : ViewModel() {
         { extData.value += ExtV("x", "X1") } to """extData.value += ExtV("x", "X1")""",
         { extData.value += ExtV("y", "Y1") } to """extData.value += ExtV("y", "Y1")""",
         { sot.updateItem(IntV(null, "X2", "x"), sync = false) } to
-                """sot.updateItem(IntV(null, "X2", "x"), sync = false)""",
+            """sot.updateItem(IntV(null, "X2", "x"), sync = false)""",
         { sot.sync() } to """sot.sync()""",
         { sot.updateItem(IntV("QR1", "Y2", "y"), sync = false) } to
-                """sot.updateItem(IntV("QR1", "Y2", "y"), sync = false)""",
+            """sot.updateItem(IntV("QR1", "Y2", "y"), sync = false)""",
         { sot.sync() } to """sot.sync()""",
         { sot.deleteByKey("x") } to """sot.deleteByKey("x")""",
         { sot.deleteByKey("y") } to """sot.deleteByKey("y")""",
+        scope = viewModelScope,
     )
 }

@@ -1,8 +1,13 @@
 package com.github.omarmiatello.sourceoftruth.core
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 public class SourceOfTruth<INTERNAL : Any, EXTERNAL : Any, KEY : Any>(
     externalFlow: Flow<List<EXTERNAL>>,
@@ -10,7 +15,7 @@ public class SourceOfTruth<INTERNAL : Any, EXTERNAL : Any, KEY : Any>(
     private val key: INTERNAL.() -> KEY,
     private val onSync: (List<INTERNAL>) -> Unit,
     private val onDelete: (KEY) -> Unit,
-    scope: CoroutineScope = GlobalScope,
+    scope: CoroutineScope,
 ) {
     private val ext: StateFlow<List<INTERNAL>> = externalFlow
         .map { list -> list.map { it.toInternal() } }
