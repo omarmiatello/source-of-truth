@@ -3,13 +3,14 @@ package com.github.omarmiatello.sourceoftruth.core
 import kotlinx.coroutines.flow.MutableStateFlow
 
 public fun <T> MutableStateFlow<List<T>>.updateBy(
-    keyOf: (T) -> Any, item: T
+    keyOf: (T) -> Any,
+    item: T,
 ) {
     mutateList { it.updateBy(keyOf, item) }
 }
 
 public fun <T> MutableStateFlow<List<T>>.removeBy(
-    condition: (T) -> Boolean
+    condition: (T) -> Boolean,
 ): Boolean {
     var res = false
     mutateList { res = it.removeBy(condition) }
