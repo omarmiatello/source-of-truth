@@ -8,8 +8,6 @@ on:
 
 jobs:
   gradle:
-    # remove this check when your you're ready to use auto-update
-    if: github.event.repository.name == 'android-template'
     defaults:
       run:
         shell: bash -i {0}
