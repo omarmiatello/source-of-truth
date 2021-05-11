@@ -10,6 +10,12 @@ This project is an experimentation on how to synchronize multiple inputs, collap
 
 ...
 
+## Demos
+
+https://user-images.githubusercontent.com/4026448/117892599-4b7b5580-b2b9-11eb-85a2-cbaa12efed20.mp4 
+
+https://user-images.githubusercontent.com/4026448/117892620-53d39080-b2b9-11eb-8be0-187550413a15.mp4 
+
 ## Contributing 🤝
 
 Feel free to open a issue or submit a pull request for any bugs/improvements.
