@@ -45,20 +45,29 @@ class Steps(
 
     @Composable
     fun Buttons() {
-        Row(Modifier.padding(16.dp)) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp),
+        ) {
             Button(onClick = { prev() }) {
-                Icon(Icons.Default.ArrowBack, null)
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = null,
+                )
                 Text("Prev")
             }
             Text(
-                "${currentStep.collectAsState().value}",
-                Modifier
+                text = "${currentStep.collectAsState().value}",
+                modifier = Modifier
                     .padding(horizontal = 16.dp)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
             )
             Button(onClick = { next() }) {
                 Text("Next")
-                Icon(Icons.Default.ArrowForward, null)
+                Icon(
+                    imageVector = Icons.Default.ArrowForward,
+                    contentDescription = null,
+                )
             }
         }
     }

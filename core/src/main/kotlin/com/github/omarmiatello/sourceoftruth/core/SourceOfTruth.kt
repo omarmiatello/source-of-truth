@@ -9,16 +9,17 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-public class SourceOfTruth<INTERNAL : Any, EXTERNAL : Any, KEY : Any>(
+public class SourceOfTruth<EXTERNAL : Any, INTERNAL : Any, KEY : Any>(
     externalFlow: Flow<List<EXTERNAL>>,
-    toInternal: EXTERNAL.() -> INTERNAL,
-    private val key: INTERNAL.() -> KEY,
+    toInternal: (EXTERNAL) -> INTERNAL,
+    private val key: (INTERNAL) -> KEY,
     private val onSync: (List<INTERNAL>) -> Unit,
     private val onDelete: (KEY) -> Unit,
-    scope: CoroutineScope,
+    private val scope: CoroutineScope,
+    private val autoSync: Boolean = true,
 ) {
     private val ext: StateFlow<List<INTERNAL>> = externalFlow
-        .map { list -> list.map { it.toInternal() } }
+        .map { list -> list.map { toInternal(it) } }
         .stateIn(scope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val int: MutableStateFlow<List<INTERNAL>> = MutableStateFlow(emptyList())
@@ -34,17 +35,17 @@ public class SourceOfTruth<INTERNAL : Any, EXTERNAL : Any, KEY : Any>(
         } + int.filter { ext.indexByItemKey(it) == null }
     }.stateIn(scope, SharingStarted.WhileSubscribed(), emptyList())
 
-    public fun updateItem(item: INTERNAL, sync: Boolean = true) {
-        int.updateBy(keyOf = { it.key() }, item = item)
+    public fun updateItem(item: INTERNAL, sync: Boolean = autoSync) {
+        int.updateBy(keyOf = { key(it) }, item = item)
         if (sync) sync()
     }
 
     public fun deleteItem(item: INTERNAL) {
-        deleteByKey(item.key())
+        deleteByKey(key(item))
     }
 
     public fun deleteByKey(key: KEY) {
-        int.removeBy { it.key() == key }
+        int.removeBy { key(it) == key }
         onDelete(key)
     }
 
@@ -56,7 +57,7 @@ public class SourceOfTruth<INTERNAL : Any, EXTERNAL : Any, KEY : Any>(
         onSync(int.value)
     }
 
-    private fun List<INTERNAL>.indexByKey(key: KEY): Int? = indexBy { it.key() == key }
+    private fun List<INTERNAL>.indexByKey(key: KEY): Int? = indexBy { key(it) == key }
 
-    private fun List<INTERNAL>.indexByItemKey(item: INTERNAL): Int? = indexByKey(item.key())
+    private fun List<INTERNAL>.indexByItemKey(item: INTERNAL): Int? = indexByKey(key(item))
 }
