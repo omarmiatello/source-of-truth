@@ -9,13 +9,14 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
+@Suppress("LongParameterList")
 public class SourceOfTruth<EXTERNAL : Any, INTERNAL : Any, KEY : Any>(
     externalFlow: Flow<List<EXTERNAL>>,
     toInternal: (EXTERNAL) -> INTERNAL,
     private val key: (INTERNAL) -> KEY,
     private val onSync: (List<INTERNAL>) -> Unit,
     private val onDelete: (KEY) -> Unit,
-    private val scope: CoroutineScope,
+    scope: CoroutineScope,
     private val autoSync: Boolean = true,
 ) {
     private val ext: StateFlow<List<INTERNAL>> = externalFlow
