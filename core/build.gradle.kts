@@ -1,4 +1,4 @@
-version = "1.0.0"
+version = "1.0.1"
 description = "Handle multiple sources (local / remote) and build a \"single source of truth\""
 
 plugins {
