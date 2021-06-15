@@ -40,7 +40,7 @@ object Lib {
     const val androidxNavigationUiKtx = "androidx.navigation:navigation-ui-ktx:2.3.5"
     const val androidxRecyclerview = "androidx.recyclerview:recyclerview:1.2.0"
     const val androidxViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
-    const val composeAccompanistCoil = "com.google.accompanist:accompanist-coil:0.10.0"
+    const val composeAccompanistCoil = "com.google.accompanist:accompanist-coil:0.11.1"
     const val composeActivity = "androidx.activity:activity-compose:1.3.0-alpha07"
     const val composeFoundation = "androidx.compose.foundation:foundation:1.0.0-beta05"
     const val composeIconsCore = "androidx.compose.material:material-icons-core:1.0.0-beta05"
