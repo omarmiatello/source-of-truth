@@ -1,13 +1,7 @@
 package com.github.omarmiatello.sourceoftruth.core
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 
 @Suppress("LongParameterList")
 public class SourceOfTruth<EXTERNAL : Any, INTERNAL : Any, KEY : Any>(
@@ -17,27 +11,42 @@ public class SourceOfTruth<EXTERNAL : Any, INTERNAL : Any, KEY : Any>(
     private val onSync: (List<INTERNAL>) -> Unit,
     private val onDelete: (KEY) -> Unit,
     scope: CoroutineScope,
+    sharingStarted: SharingStarted = SharingStarted.WhileSubscribed(),
     private val autoSync: Boolean = true,
+    private val canOverrideExternal: Boolean = true,
+    private val onConflict: OnConflict<INTERNAL> = OnConflict.KeepAllInternal(),
+    private val onCombine: OnCombine<INTERNAL> = OnCombine.InternalOnlyHasPriority(),
 ) {
-    private val ext: StateFlow<List<INTERNAL>> = externalFlow
+    private val externalStateFlow: StateFlow<List<INTERNAL>> = externalFlow
         .map { list -> list.map { toInternal(it) } }
-        .stateIn(scope, SharingStarted.WhileSubscribed(), emptyList())
+        .stateIn(scope, sharingStarted, emptyList())
 
-    private val int: MutableStateFlow<List<INTERNAL>> = MutableStateFlow(emptyList())
+    private val internalStateFlow: MutableStateFlow<List<INTERNAL>> = MutableStateFlow(emptyList())
 
-    public val flow: StateFlow<List<INTERNAL>> = combine(ext, int) { ext, int ->
-        ext.map {
-            val indexItem = int.indexByItemKey(it)
-            if (indexItem != null) {
-                int[indexItem]
-            } else {
-                it
-            }
-        } + int.filter { ext.indexByItemKey(it) == null }
-    }.stateIn(scope, SharingStarted.WhileSubscribed(), emptyList())
+    public val flow: StateFlow<List<INTERNAL>> = combine(
+        externalStateFlow,
+        internalStateFlow,
+    ) { ext, int ->
+        onCombine(
+            fromExternal = if (canOverrideExternal) {
+                ext.map {
+                    val indexItem = int.indexByItemKey(it)
+                    if (indexItem != null) {
+                        onConflict(
+                            externalItem = it,
+                            internalItem = int[indexItem],
+                        )
+                    } else {
+                        it
+                    }
+                }
+            } else ext,
+            internalOnly = int.filter { ext.indexByItemKey(it) == null }
+        )
+    }.stateIn(scope, sharingStarted, emptyList())
 
     public fun updateItem(item: INTERNAL, sync: Boolean = autoSync) {
-        int.updateBy(keyOf = { key(it) }, item = item)
+        internalStateFlow.updateBy(keyOf = { key(it) }, item = item)
         if (sync) sync()
     }
 
@@ -46,19 +55,49 @@ public class SourceOfTruth<EXTERNAL : Any, INTERNAL : Any, KEY : Any>(
     }
 
     public fun deleteByKey(key: KEY) {
-        int.removeBy { key(it) == key }
+        internalStateFlow.removeBy { key(it) == key }
         onDelete(key)
     }
 
     public fun flush() {
-        int.value = emptyList()
+        internalStateFlow.value = emptyList()
     }
 
     public fun sync() {
-        onSync(int.value)
+        onSync(internalStateFlow.value)
     }
 
     private fun List<INTERNAL>.indexByKey(key: KEY): Int? = indexBy { key(it) == key }
 
     private fun List<INTERNAL>.indexByItemKey(item: INTERNAL): Int? = indexByKey(key(item))
 }
+
+public interface OnConflict<INTERNAL> {
+    public operator fun invoke(externalItem: INTERNAL, internalItem: INTERNAL): INTERNAL
+
+    public class KeepAllInternal<INTERNAL> : OnConflict<INTERNAL> {
+        override fun invoke(externalItem: INTERNAL, internalItem: INTERNAL): INTERNAL = internalItem
+    }
+}
+
+public interface OnCombine<INTERNAL> {
+    public operator fun invoke(
+        fromExternal: List<INTERNAL>,
+        internalOnly: List<INTERNAL>
+    ): List<INTERNAL>
+
+    public class InternalOnlyHasPriority<INTERNAL> : OnCombine<INTERNAL> {
+        override fun invoke(
+            fromExternal: List<INTERNAL>,
+            internalOnly: List<INTERNAL>
+        ): List<INTERNAL> = internalOnly + fromExternal
+    }
+
+    public class ExternalHasPriority<INTERNAL> : OnCombine<INTERNAL> {
+        override fun invoke(
+            fromExternal: List<INTERNAL>,
+            internalOnly: List<INTERNAL>
+        ): List<INTERNAL> = fromExternal + internalOnly
+    }
+}
+

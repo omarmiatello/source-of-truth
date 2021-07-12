@@ -5,22 +5,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 public fun <T> MutableStateFlow<List<T>>.updateBy(
     keyOf: (T) -> Any,
     item: T,
-) {
-    mutateList { it.updateBy(keyOf, item) }
-}
+): Boolean = mutateListWithOpResult { it.updateBy(keyOf, item) }
 
 public fun <T> MutableStateFlow<List<T>>.removeBy(
     condition: (T) -> Boolean,
-): Boolean {
-    var res = false
-    mutateList { res = it.removeBy(condition) }
-    return res
+): T? {
+    return mutateListWithOpResult { it.removeBy(condition) }
 }
 
 public fun <T> MutableList<T>.updateBy(
     keyOf: (T) -> Any,
     item: T,
-) {
+): Boolean {
     val key = keyOf(item)
     val indexExt = indexBy { keyOf(it) == key }
     if (indexExt != null) {
@@ -29,24 +25,21 @@ public fun <T> MutableList<T>.updateBy(
     } else {
         add(item)
     }
-}
-
-public fun <T> MutableList<T>.removeBy(
-    condition: (T) -> Boolean,
-): Boolean {
-    val indexExt = indexBy(condition)
-    if (indexExt != null) removeAt(indexExt)
     return indexExt != null
 }
 
-public fun <T> MutableStateFlow<List<T>>.mutateList(
-    block: (MutableList<T>) -> Unit,
-) {
-    value = value.toMutableList().also(block)
+public fun <T> MutableList<T>.removeBy(condition: (T) -> Boolean): T? =
+    indexBy(condition)?.let { index ->
+        removeAt(index)
+    }
+
+public fun <T, R> MutableStateFlow<List<T>>.mutateListWithOpResult(
+    block: (MutableList<T>) -> R,
+): R = value.toMutableList().let { mutableList ->
+    val res = block(mutableList)
+    value = mutableList
+    res
 }
 
-public fun <T> List<T>.indexBy(
-    condition: (T) -> Boolean,
-): Int? {
-    return indexOfFirst(condition).takeIf { it != -1 }
-}
+public fun <T> List<T>.indexBy(condition: (T) -> Boolean): Int? =
+    indexOfFirst(condition).takeIf { it != -1 }

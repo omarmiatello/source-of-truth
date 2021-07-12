@@ -17,7 +17,7 @@ object VersionIn {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${VersionIn.kotlin}")
-    implementation("com.android.tools.build:gradle:7.0.0-alpha15")
+    implementation("com.android.tools.build:gradle:7.1.0-alpha03")
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:${VersionIn.dokka}")
     implementation("org.jetbrains.dokka:dokka-core:${VersionIn.dokka}")
 }
