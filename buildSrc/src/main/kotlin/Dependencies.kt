@@ -25,7 +25,7 @@ object Version {
 
 object Lib {
     const val androidxActivityKtx = "androidx.activity:activity-ktx:1.4.0"
-    const val androidxAppcompat = "androidx.appcompat:appcompat:1.4.0-rc01"
+    const val androidxAppcompat = "androidx.appcompat:appcompat:1.4.0"
     const val androidxCameraCamera2 = "androidx.camera:camera-camera2:1.1.0-alpha04"
     const val androidxCameraCore = "androidx.camera:camera-core:1.1.0-alpha04"
     const val androidxCameraExtensions = "androidx.camera:camera-extensions:1.0.0-alpha24"
@@ -33,7 +33,7 @@ object Lib {
     const val androidxCameraView = "androidx.camera:camera-view:1.0.0-alpha24"
     const val androidxConstraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0-beta01"
     const val androidxCoreKtx = "androidx.core:core-ktx:1.7.0"
-    const val androidxFragmentKtx = "androidx.fragment:fragment-ktx:1.4.0-rc01"
+    const val androidxFragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
     const val androidxLifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
     const val androidxLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
     const val androidxNavigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.3.5"
