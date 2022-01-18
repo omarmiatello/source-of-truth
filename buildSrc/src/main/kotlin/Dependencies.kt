@@ -25,7 +25,7 @@ object Version {
 
 object Lib {
     const val androidxActivityKtx = "androidx.activity:activity-ktx:1.4.0"
-    const val androidxAppcompat = "androidx.appcompat:appcompat:1.4.0"
+    const val androidxAppcompat = "androidx.appcompat:appcompat:1.4.1"
     const val androidxCameraCamera2 = "androidx.camera:camera-camera2:1.1.0-alpha04"
     const val androidxCameraCore = "androidx.camera:camera-core:1.1.0-alpha04"
     const val androidxCameraExtensions = "androidx.camera:camera-extensions:1.0.0-alpha24"
