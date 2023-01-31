@@ -6,4 +6,4 @@ com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin -> 0.4
 com.pinterest:ktlint -> 0.41.0
 io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.22.0
 org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable -> 1.8.0
-org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin -> 11.0.0
+org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin -> 11.1.0
