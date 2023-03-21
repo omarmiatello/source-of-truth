@@ -5,5 +5,5 @@ androidx.compose.compiler:compiler -> 1.4.3
 com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin -> 0.46.0
 com.pinterest:ktlint -> 0.41.0
 io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.22.0
-org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable -> 1.8.10
+org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable -> 1.8.20-RC
 org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin -> 11.3.1
