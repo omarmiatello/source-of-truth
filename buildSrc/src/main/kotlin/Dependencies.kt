@@ -62,7 +62,7 @@ object Lib {
     const val kaptDaggerCompiler = "com.google.dagger:dagger-compiler:2.35.1"
     const val kaptHiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:2.35.1"
     const val kaptHiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
-    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:1.8.21"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:1.9.0-Beta"
     const val ktorClientOkhttp = "io.ktor:ktor-client-okhttp:1.5.4"
     const val mlkitBarcodeScanning = "com.google.mlkit:barcode-scanning:16.1.1"
     const val mlkitTextRecognition = "com.google.android.gms:play-services-mlkit-text-recognition:16.1.3"
