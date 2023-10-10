@@ -24,7 +24,7 @@ object Version {
 }
 
 object Lib {
-    const val androidxActivityKtx = "androidx.activity:activity-ktx:1.8.0-rc01"
+    const val androidxActivityKtx = "androidx.activity:activity-ktx:1.8.0"
     const val androidxAppcompat = "androidx.appcompat:appcompat:1.7.0-alpha03"
     const val androidxCameraCamera2 = "androidx.camera:camera-camera2:1.1.0-alpha04"
     const val androidxCameraCore = "androidx.camera:camera-core:1.1.0-alpha04"
@@ -41,7 +41,7 @@ object Lib {
     const val androidxRecyclerview = "androidx.recyclerview:recyclerview:1.2.0"
     const val androidxViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02"
     const val composeAccompanistCoil = "com.google.accompanist:accompanist-coil:0.15.0"
-    const val composeActivity = "androidx.activity:activity-compose:1.8.0-rc01"
+    const val composeActivity = "androidx.activity:activity-compose:1.8.0"
     const val composeFoundation = "androidx.compose.foundation:foundation:1.6.0-alpha06"
     const val composeIconsCore = "androidx.compose.material:material-icons-core:1.6.0-alpha06"
     const val composeIconsExt = "androidx.compose.material:material-icons-extended:1.6.0-alpha06"
