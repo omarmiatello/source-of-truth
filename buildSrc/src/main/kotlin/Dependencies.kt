@@ -49,7 +49,7 @@ object Lib {
     const val composeUi = "androidx.compose.ui:ui:1.6.0-beta03"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:1.6.0-beta03"
     const val composeViewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc02"
-    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0-RC"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0-RC2"
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
     const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.0-RC"
     const val dagger = "com.google.dagger:dagger:2.35.1"
