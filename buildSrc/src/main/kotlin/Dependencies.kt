@@ -66,10 +66,10 @@ object Lib {
     const val ktorClientOkhttp = "io.ktor:ktor-client-okhttp:1.5.4"
     const val mlkitBarcodeScanning = "com.google.mlkit:barcode-scanning:16.1.1"
     const val mlkitTextRecognition = "com.google.android.gms:play-services-mlkit-text-recognition:16.1.3"
-    const val testAndroidxEspresso = "androidx.test.espresso:espresso-core:3.6.0-rc01"
-    const val testAndroidxExtJunit = "androidx.test.ext:junit:1.2.0-rc01"
-    const val testAndroidxRules = "androidx.test:rules:1.6.0-rc01"
-    const val testAndroidxRunner = "androidx.test:runner:1.6.0-rc01"
+    const val testAndroidxEspresso = "androidx.test.espresso:espresso-core:3.6.0"
+    const val testAndroidxExtJunit = "androidx.test.ext:junit:1.2.0"
+    const val testAndroidxRules = "androidx.test:rules:1.6.0"
+    const val testAndroidxRunner = "androidx.test:runner:1.6.0"
     const val testJunit = "junit:junit:4.13.2"
 }
 
