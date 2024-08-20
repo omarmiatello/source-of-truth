@@ -69,7 +69,7 @@ object Lib {
     const val testAndroidxEspresso = "androidx.test.espresso:espresso-core:3.6.1"
     const val testAndroidxExtJunit = "androidx.test.ext:junit:1.2.1"
     const val testAndroidxRules = "androidx.test:rules:1.6.1"
-    const val testAndroidxRunner = "androidx.test:runner:1.6.1"
+    const val testAndroidxRunner = "androidx.test:runner:1.6.2"
     const val testJunit = "junit:junit:4.13.2"
 }
 
