@@ -4,6 +4,6 @@ If necessary, these dependencies must be manually updated:
 androidx.compose.compiler:compiler -> 1.7.0-beta06
 com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin -> 0.51.0
 com.pinterest:ktlint -> 0.51.0-FINAL
-io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.23.6
+io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.23.7
 org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable -> 2.0.20
 org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin -> 12.1.1
