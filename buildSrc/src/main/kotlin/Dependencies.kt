@@ -32,7 +32,7 @@ object Lib {
     const val androidxCameraLifecycle = "androidx.camera:camera-lifecycle:1.1.0-alpha04"
     const val androidxCameraView = "androidx.camera:camera-view:1.0.0-alpha24"
     const val androidxConstraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0-beta01"
-    const val androidxCoreKtx = "androidx.core:core-ktx:1.16.0-alpha02"
+    const val androidxCoreKtx = "androidx.core:core-ktx:1.16.0"
     const val androidxFragmentKtx = "androidx.fragment:fragment-ktx:1.8.6"
     const val androidxLifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.9.0-alpha10"
     const val androidxLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
